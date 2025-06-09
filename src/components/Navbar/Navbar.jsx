@@ -1,129 +1,200 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { IoMdSearch } from "react-icons/io";
-import { FaShoppingCart, FaCaretDown } from "react-icons/fa";
-import DarkMode from './DarkMode';
+import { FaCaretDown } from "react-icons/fa";
+import { FiShoppingCart, FiMenu } from "react-icons/fi";
+import { IoPersonOutline } from "react-icons/io5";
+import SearchOverlay from './SearchOverlay';
 
 const MenuLinks = [
-    {
-        id: 1,
-        name: 'Home',
-        link: '/#'
-    },
-    {
-        id: 2,
-        name: 'Shop',
-        link: '/#shop'
-    },
-    {
-        id: 3,
-        name: 'About',
-        link: '/#about'
-    },
-    {
-        id: 4,
-        name: 'Blogs',
-        link: '/#blog'
-    },
-
+    { id: 1, name: 'Home', link: '/#' },
+    { id: 2, name: 'Shop', link: '/#shop' },
+    { id: 3, name: 'About', link: '/#about' },
+    { id: 4, name: 'Blogs', link: '/#blog' },
 ];
-const DropdownLinks =[
-   {
-        id: 1,
-        name: 'Trending Products',
-        link: '/#'
-    },
-    {
-        id: 2,
-        name: 'Best Selling',
-        link: '/#'
-    },
-    {
-        id: 3,
-        name: 'Top Rated',
-        link: '/#'
-    },
-    
-]
+
+const DropdownLinks = [
+    { id: 1, name: 'Trending Products', link: '/#' },
+    { id: 2, name: 'Best Selling', link: '/#' },
+    { id: 3, name: 'Top Rated', link: '/#' },
+];
 
 const Navbar = () => {
-    return (
-        <div className='bg-white dark:bg-gray-900 dark:text-white duration-200 relative z-40'>
-            <div className='py-4'>
-                <div className="container flex justify-between items-center">
-                    {/* Logo and Links section */}
-                    <div className='flex items-center gap-4'>
-                        <a href="#"
-                            className='text-primary font-semibold tracking-widest text-2xl uppercase sm:text-3xl'>
-                            Cyber
-                        </a>
-                        {/* Memu items */}
-                        <div className='hidden lg:block'>
-                            <ul className='flex items-center gap-4'>
-                                {
-                                    MenuLinks.map((data, index) => (
-                                        <li key={index}>
-                                            <a href={data.link} className='inline-block px-4 font-semibold text-gray-500 hover:text-black 
-                                            dark:hover:text-white duration-200'>
-                                                {data.name}
-                                            </a>
-                                        </li>
-                                    ))
-                                }
-                                {/* Dropdown */}
-                                <li className='relative cursor-pointer group'>
-                                    <a href="#" className='flex items-center gap-[2px]
-                                    font-semibold text-gray-500 dark:hover:text-white py-5'>
-                                        Quick Links
+    const [showSearch, setShowSearch] = useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [isQuickLinksOpen, setIsQuickLinksOpen] = useState(false);
+    const menuRef = useRef(null);
+    const buttonRef = useRef(null);
 
-                                        <span>
-                                            <FaCaretDown className='transition-transform duration-300 group-hover:rotate-180' />
-                                        </span>
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (
+                mobileMenuOpen &&
+                menuRef.current &&
+                !menuRef.current.contains(event.target) &&
+                !buttonRef.current.contains(event.target)
+            ) {
+                setMobileMenuOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [mobileMenuOpen]);
+
+    return (
+        <>
+            <div className="bg-[#333] duration-200 fixed w-full z-40 shadow-xl">
+                <div className="py-2">
+                    <div className="container mx-auto flex justify-between items-center">
+                        {/* Left: Logo + Menu */}
+                        <div className="flex items-center gap-6 w-full md:w-auto">
+                            <button
+                                ref={buttonRef}
+                                onClick={() => setMobileMenuOpen(true)}
+                                className="md:hidden"
+                            >
+                                <FiMenu className="text-xl text-white" />
+                            </button>
+
+                            {/* Logo */}
+                            <a
+                                href="#"
+                                className="text-white font-semibold font-poppins tracking-wider text-2xl uppercase sm:text-3xl mx-auto md:mx-0"
+                            >
+                                Cyzy
+                            </a>
+
+                            {/* Menu (Desktop) */}
+                            <ul className="hidden md:flex items-center gap-4">
+                                {MenuLinks.map((data) => (
+                                    <li key={data.id}>
+                                        <a
+                                            href={data.link}
+                                            className="inline-block px-4 font-semibold text-white hover:text-slate-300"
+                                        >
+                                            {data.name}
+                                        </a>
+                                    </li>
+                                ))}
+                                {/* Dropdown */}
+                                <li className="relative cursor-pointer group">
+                                    <a
+                                        href="#"
+                                        className="flex items-center gap-1 font-semibold text-white py-5"
+                                    >
+                                        Quick Links
+                                        <FaCaretDown className="transition-transform duration-300 group-hover:rotate-180" />
                                     </a>
-                                    {/* DropDown links  */}
-                                    <div className='absolute z-[9999] hidden group group-hover:block
-                                    w-[200px] rounded-md bg-white shadow-md dark:bg-gray-900 py-2
-                                     dark:text-white '>
-                                        <ul className='space-y-2 '>
-                                            {
-                                                DropdownLinks.map((data) => (
-                                                    <li>
-                                                        <a href={data.link}
-                                                        className='text-gray-500 dark:hover:text-white duration-200 
-                                                        inline-block w-full p-2 hover:bg-primary/20 rounded-md font-semibold'
-                                                        >
-                                                            {data.name}
-                                                        </a>
-                                                    </li>
-                                                ))
-                                            }
+                                    <div className="absolute hidden group-hover:block w-[200px] rounded-md bg-white shadow-md z-50">
+                                        <ul className="space-y-2 px-2 py-2">
+                                            {DropdownLinks.map((item) => (
+                                                <li key={item.id}>
+                                                    <a
+                                                        href={item.link}
+                                                        className="block p-2 rounded-md text-gray-500 hover:bg-gray-100 font-semibold"
+                                                    >
+                                                        {item.name}
+                                                    </a>
+                                                </li>
+                                            ))}
                                         </ul>
                                     </div>
                                 </li>
                             </ul>
                         </div>
-                    </div>
-                    {/* Navbar Right section */}
-                    <div className='flex justify-between items-center gap-4'>
-                        {/* Search Bar section */}
-                        <div className='relative group hidden sm:block'>
-                            <input type="text"
-                                placeholder='Search' className='search-bar' />
-                            <IoMdSearch className='text-xl text-gray-600 group-hover:text-primary dark:text-gray-400 absolute top-1/2 -translate-y-1/2 right-3 duration-200' />
-                        </div>
-                        {/* Order button section */}
-                        <button className='relative py-3'>
-                            <FaShoppingCart className='text-xl text-gray-600 dark:text-gray-400' />
-                            <div className='w-4 h-4 bg-red-500 text-white rounded-full absolute top-0 left-[9px] flex items-center justify-center text-xs'>4</div>
-                        </button>
-                        {/* Dark mode section */}
-                        <div>
-                            <DarkMode />
+
+                        {/* Right: Search + Cart + User */}
+                        <div className="flex items-center gap-4">
+                            <IoMdSearch
+                                className="text-xl text-white cursor-pointer hover:text-slate-300"
+                                onClick={() => setShowSearch(true)}
+                            />
+                            <button className="relative py-3">
+                                <FiShoppingCart className="text-xl text-white hover:text-slate-300" />
+                                <div className="w-4 h-4 bg-red-500 text-white rounded-full absolute top-0 left-[9px] flex items-center justify-center text-xs">
+                                    4
+                                </div>
+                            </button>
+                            <button>
+                                <IoPersonOutline className="text-xl text-white hover:text-slate-300" />
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    )
-}
 
-export default Navbar
+            {/* Overlay mờ */}
+            {mobileMenuOpen && (
+                <div
+                    className="fixed inset-0 bg-black bg-opacity-50 z-40"
+                    onClick={() => setMobileMenuOpen(false)}
+                ></div>
+            )}
+
+            {/* Sidebar từ trái sang */}
+            <div
+                ref={menuRef}
+                className={`fixed top-0 left-0 h-full w-64 bg-[#222] z-50 transform transition-transform duration-300 ease-in-out ${
+                    mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
+                }`}
+            >
+                <div className="p-4 flex justify-between items-center border-b border-white/10">
+                    <span className="text-white font-semibold text-xl">Cyzy</span>
+                    <button
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="text-white text-2xl hover:text-red-400"
+                    >
+                        &times;
+                    </button>
+                </div>
+
+                <ul className="flex flex-col gap-2 p-4">
+                    {MenuLinks.map((item) => (
+                        <li key={item.id}>
+                            <a
+                                href={item.link}
+                                className="block text-white py-2 font-medium border-b border-white/10"
+                            >
+                                {item.name}
+                            </a>
+                        </li>
+                    ))}
+
+                    <li>
+                        <button
+                            onClick={() => setIsQuickLinksOpen(!isQuickLinksOpen)}
+                            className="w-full flex items-center justify-between text-white font-semibold py-2 border-b border-white/10"
+                        >
+                            <span>Quick Links</span>
+                            <FaCaretDown
+                                className={`transition-transform duration-300 ${
+                                    isQuickLinksOpen ? 'rotate-180' : ''
+                                }`}
+                            />
+                        </button>
+                        <ul
+                            className={`pl-4 overflow-hidden transition-all duration-300 ${
+                                isQuickLinksOpen ? 'max-h-[500px] mt-2' : 'max-h-0'
+                            }`}
+                        >
+                            {DropdownLinks.map((item) => (
+                                <li key={item.id}>
+                                    <a href={item.link} className="block text-white/80 py-1 text-sm">
+                                        {item.name}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            {/* Search Overlay */}
+            {showSearch && <SearchOverlay onClose={() => setShowSearch(false)} />}
+        </>
+    );
+};
+
+export default Navbar;
