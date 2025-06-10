@@ -45,8 +45,8 @@ const Navbar = () => {
 
     return (
         <>
-            <div className="bg-[#333] duration-200 fixed w-full z-40 shadow-xl">
-                <div className="py-2">
+            <div className="bg-[#333] duration-200 w-full z-40 shadow-xl">
+                <div className="py-1 md:py-[3px]">
                     <div className="container mx-auto flex justify-between items-center">
                         {/* Left: Logo + Menu */}
                         <div className="flex items-center gap-6 w-full md:w-auto">
@@ -72,7 +72,7 @@ const Navbar = () => {
                                     <li key={data.id}>
                                         <a
                                             href={data.link}
-                                            className="inline-block px-4 font-semibold text-white hover:text-slate-300"
+                                            className="inline-block px-4 font-[13px] font-arial text-white hover:text-slate-300"
                                         >
                                             {data.name}
                                         </a>
@@ -82,7 +82,7 @@ const Navbar = () => {
                                 <li className="relative cursor-pointer group">
                                     <a
                                         href="#"
-                                        className="flex items-center gap-1 font-semibold text-white py-5"
+                                        className="flex items-center gap-1 font-[13px] font-arial text-white py-5"
                                     >
                                         Quick Links
                                         <FaCaretDown className="transition-transform duration-300 group-hover:rotate-180" />

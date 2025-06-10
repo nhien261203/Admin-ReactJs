@@ -33,7 +33,7 @@ const SearchOverlay = ({ onClose }) => {
                     <input
                         type="text"
                         autoFocus
-                        placeholder="Nhập từ khóa tìm kiếm..."
+                        placeholder="Bạn cần tìm kiếm gì ..."
                         className="w-full md:text-md text-sm border-gray-300 focus:outline-none"
                     />
                 </motion.div>
