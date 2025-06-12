@@ -27,7 +27,7 @@ const CountdownTimer = ({ endTime }) => {
     }, [endTime]);
 
     return (
-        <div className="bg-orange-100 text-orange-600 px-4 py-1 rounded-lg text-sm font-bold">
+        <div className="bg-orange-100 text-orange-600 px-4 py-2 rounded-lg text-sm font-bold w-fit mx-auto">
             Chỉ còn: {timeLeft}
         </div>
     );

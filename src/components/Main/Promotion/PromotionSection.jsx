@@ -120,7 +120,6 @@ const mockProducts = [
 
 const PromotionSection = () => {
     const [activeTab, setActiveTab] = useState(mockCategories[0]);
-
     const filteredProducts = mockProducts.filter((item) => item.category === activeTab);
 
     return (
@@ -128,12 +127,15 @@ const PromotionSection = () => {
             <section className="bg-white my-8 p-4 rounded-lg shadow">
                 <h2 className="text-xl font-bold mb-4">Khuyến mãi Online</h2>
 
-                <div className="flex flex-wrap items-center gap-4 mb-4">
+                <div className="flex flex-col gap-4 mb-4">
                     <PromotionTabs tabs={mockCategories} activeTab={activeTab} onTabChange={setActiveTab} />
-                    <CountdownTimer endTime="2025-06-13T18:00:00" />
+                    {/* Only show CountdownTimer for Flash Sale tab */}
+                    {activeTab === 'Flash Sale' && (
+                        <CountdownTimer endTime="2025-06-13T18:00:00" />
+                    )}
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-3">
                     {filteredProducts.map((product) => (
                         <PromotionProductCard key={product.id} {...product} />
                     ))}
