@@ -56,11 +56,11 @@ const Navbar = () => {
                 <div >
                     <div className="container mx-auto flex justify-between items-center">
                         {/* Left: Logo + Menu */}
-                        <div className="flex items-center gap-6 w-full md:w-auto">
+                        <div className="flex items-center justify-between gap-6 w-full lg:w-auto">
                             <button
                                 ref={buttonRef}
                                 onClick={() => setMobileMenuOpen(true)}
-                                className="md:hidden"
+                                className="lg:hidden"
                             >
                                 <FiMenu className="text-xl text-white" />
                             </button>
@@ -68,13 +68,13 @@ const Navbar = () => {
                             {/* Logo */}
                             <a
                                 href="#"
-                                className="text-white font-semibold font-poppins tracking-wider text-2xl uppercase sm:text-3xl mx-auto md:mx-0"
+                                className="text-white font-semibold font-poppins tracking-wider text-2xl uppercase sm:text-3xl mx-auto lg:mx-0"
                             >
                                 Cyzy
                             </a>
 
                             {/* Menu (Desktop) */}
-                            <ul className="hidden md:flex items-center gap-4">
+                            <ul className="hidden lg:flex items-center gap-4">
                                 {MenuLinks.map((data) => (
                                     <li key={data.id}>
                                         <a

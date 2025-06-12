@@ -1,4 +1,3 @@
-// ListCard.jsx
 import React from "react";
 import Card from "../ListCard/Cart";
 import PhoneCard from "../../assets/wesite/phone-card.jpg";
@@ -7,7 +6,6 @@ import DhCard from "../../assets/wesite/dh-card.png";
 import IpCard from "../../assets/wesite/ipad-card.jpg";
 import PkCard from "../../assets/wesite/phu-kien.jpg";
 import PcCard from "../../assets/wesite/pc.jpg";
-
 
 const categories = [
     { title: "Điện thoại", image: PhoneCard },
@@ -20,28 +18,20 @@ const categories = [
 
 const ListCard = () => {
     return (
-        <div className="container ">
+        <div className="container">
             {/* Desktop view */}
-
-            <div className="hidden lg:grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+            <div className="hidden xl:grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
                 {categories.map((cat, index) => (
                     <Card key={index} title={cat.title} image={cat.image} />
                 ))}
             </div>
 
-            {/* Mobile & Tablet view with horizontal scroll */}
-            <div className="lg:hidden w-full">
-                <div className="flex overflow-x-auto no-scrollbar">
-                    <div className="flex gap-4 snap-x snap-mandatory">
-                        {categories.map((cat, index) => (
-                            <div key={index} className="snap-start scroll-ml-4 shrink-0 w-[157px]">
-                                <Card title={cat.title} image={cat.image} />
-                            </div>
-                        ))}
-                    </div>
-                </div>
+            {/* Mobile & Tablet view: 2 hàng, mỗi hàng 3 card */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 xl:hidden mt-4">
+                {categories.map((cat, index) => (
+                    <Card key={index} title={cat.title} image={cat.image} />
+                ))}
             </div>
-
         </div>
     );
 };
