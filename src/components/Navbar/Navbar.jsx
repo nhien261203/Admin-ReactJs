@@ -6,16 +6,18 @@ import { IoPersonOutline } from "react-icons/io5";
 import SearchOverlay from './SearchOverlay';
 
 const MenuLinks = [
-    { id: 1, name: 'Home', link: '/#' },
-    { id: 2, name: 'Shop', link: '/#shop' },
-    { id: 3, name: 'About', link: '/#about' },
-    { id: 4, name: 'Blogs', link: '/#blog' },
+    { id: 1, name: 'Điện thoại', link: '/#' },
+    { id: 2, name: 'Laptop', link: '/#shop' },
+    { id: 3, name: 'Ipad', link: '/#about' },
+    { id: 4, name: 'Đồng hồ', link: '/#about' },
+    { id: 5, name: 'PC, Màn hình', link: '/#about' },
+    
 ];
 
 const DropdownLinks = [
-    { id: 1, name: 'Trending Products', link: '/#' },
-    { id: 2, name: 'Best Selling', link: '/#' },
-    { id: 3, name: 'Top Rated', link: '/#' },
+    { id: 1, name: 'Phụ kiện di động', link: '/#' },
+    { id: 2, name: 'Thiết bị âm thanh', link: '/#' },
+    { id: 3, name: 'Phụ kiện laptop', link: '/#' },
 ];
 
 const Navbar = () => {
@@ -43,10 +45,15 @@ const Navbar = () => {
         };
     }, [mobileMenuOpen]);
 
+    const [isLoggedIn, setIsLoggedIn] = useState(false); // giả lập trạng thái đăng nhập
+    const [isPersonDropdownOpen, setIsPersonDropdownOpen] = useState(false);
+
+
+
     return (
         <>
-            <div className="bg-[#333] duration-200 w-full z-40 shadow-xl">
-                <div className="py-1 md:py-[3px]">
+            <div className="bg-[#515154] duration-200 w-full z-40 shadow-xl">
+                <div >
                     <div className="container mx-auto flex justify-between items-center">
                         {/* Left: Logo + Menu */}
                         <div className="flex items-center gap-6 w-full md:w-auto">
@@ -72,7 +79,7 @@ const Navbar = () => {
                                     <li key={data.id}>
                                         <a
                                             href={data.link}
-                                            className="inline-block px-4 font-[13px] font-arial text-white hover:text-slate-300"
+                                            className="inline-block py-4 px-4 font-arial text-white hover:bg-gray-400 text-base md:text-sm lg:text-base"
                                         >
                                             {data.name}
                                         </a>
@@ -82,9 +89,9 @@ const Navbar = () => {
                                 <li className="relative cursor-pointer group">
                                     <a
                                         href="#"
-                                        className="flex items-center gap-1 font-[13px] font-arial text-white py-5"
+                                        className="flex items-center gap-1 font-[13px] font-arial text-white py-4 px-4 hover:bg-gray-400"
                                     >
-                                        Quick Links
+                                        Phụ kiện
                                         <FaCaretDown className="transition-transform duration-300 group-hover:rotate-180" />
                                     </a>
                                     <div className="absolute hidden group-hover:block w-[200px] rounded-md bg-white shadow-md z-50">
@@ -117,9 +124,44 @@ const Navbar = () => {
                                     4
                                 </div>
                             </button>
-                            <button>
+
+                            {/* Auth login  */}
+                            <div className="relative group cursor-pointer py-5">
                                 <IoPersonOutline className="text-xl text-white hover:text-slate-300" />
-                            </button>
+
+                                <div className="absolute right-0 mt-3 w-[200px] rounded-md bg-white shadow-md z-50 hidden group-hover:block">
+                                    <ul className="py-2 text-sm text-gray-700">
+                                        {!isLoggedIn ? (
+                                            <>
+                                                <li>
+                                                    <a href="/register" className="block px-4 py-2 hover:bg-gray-100 text-blue-600 font-semibold">
+                                                        Tạo tài khoản ngay
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/login" className="block px-4 py-2 hover:bg-gray-100">
+                                                        Đăng nhập
+                                                    </a>
+                                                </li>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <li>
+                                                    <a href="/profile" className="block px-4 py-2 hover:bg-gray-100">Profile</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/orders" className="block px-4 py-2 hover:bg-gray-100">Orders</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/logout" className="block px-4 py-2 hover:bg-gray-100 text-red-500">Logout</a>
+                                                </li>
+                                            </>
+                                        )}
+                                    </ul>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -136,9 +178,8 @@ const Navbar = () => {
             {/* Sidebar từ trái sang */}
             <div
                 ref={menuRef}
-                className={`fixed top-0 left-0 h-full w-64 bg-[#222] z-50 transform transition-transform duration-300 ease-in-out ${
-                    mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
-                }`}
+                className={`fixed top-0 left-0 h-full w-64 bg-[#222] z-50 transform transition-transform duration-300 ease-in-out ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
+                    }`}
             >
                 <div className="p-4 flex justify-between items-center border-b border-white/10">
                     <span className="text-white font-semibold text-xl">Cyzy</span>
@@ -167,17 +208,15 @@ const Navbar = () => {
                             onClick={() => setIsQuickLinksOpen(!isQuickLinksOpen)}
                             className="w-full flex items-center justify-between text-white font-semibold py-2 border-b border-white/10"
                         >
-                            <span>Quick Links</span>
+                            <span>Phụ kiện</span>
                             <FaCaretDown
-                                className={`transition-transform duration-300 ${
-                                    isQuickLinksOpen ? 'rotate-180' : ''
-                                }`}
+                                className={`transition-transform duration-300 ${isQuickLinksOpen ? 'rotate-180' : ''
+                                    }`}
                             />
                         </button>
                         <ul
-                            className={`pl-4 overflow-hidden transition-all duration-300 ${
-                                isQuickLinksOpen ? 'max-h-[500px] mt-2' : 'max-h-0'
-                            }`}
+                            className={`pl-4 overflow-hidden transition-all duration-300 ${isQuickLinksOpen ? 'max-h-[500px] mt-2' : 'max-h-0'
+                                }`}
                         >
                             {DropdownLinks.map((item) => (
                                 <li key={item.id}>

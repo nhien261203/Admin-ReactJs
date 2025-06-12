@@ -67,7 +67,7 @@ const Hero = () => {
 
     return (
         <div className="w-full overflow-hidden mb-24 relative">
-            
+
             <Slider {...settings}>
                 {slides.map((slide, index) => {
                     const imageSrc = isMobile ? slide.mobile : slide.desktop;
