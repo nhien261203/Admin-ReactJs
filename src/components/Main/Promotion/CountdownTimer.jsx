@@ -1,14 +1,14 @@
 // components/CountdownTimer.jsx
 import React, { useEffect, useState } from 'react';
 
-const CountdownTimer = ({ endTime }) => {
+const CountdownTimer = () => {
     const [timeLeft, setTimeLeft] = useState('');
+    const [endTime] = useState(new Date(Date.now() + 3 * 60 * 1000).getTime()); // Tính luôn endTime = now + 3 phút
 
     useEffect(() => {
         const timer = setInterval(() => {
-            const end = new Date(endTime).getTime();
             const now = new Date().getTime();
-            const diff = end - now;
+            const diff = endTime - now;
 
             if (diff <= 0) {
                 setTimeLeft('00:00:00');
