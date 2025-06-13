@@ -30,12 +30,14 @@ const PromotionProductCard = ({
                     )}
                 </div>
             </div>
+            <div className="min-h-[24px]">
+                {statusText && (
+                    <div className={`rounded-md text-xs py-1 px-2 font-semibold ${statusColor}`}>
+                        🔥 {statusText}
+                    </div>
+                )}
+            </div>
 
-            {statusText && (
-                <div className={`rounded-md text-xs py-1 px-2 font-semibold ${statusColor}`}>
-                    🔥 {statusText}
-                </div>
-            )}
             <button className="bg-blue-500 text-white text-sm rounded-md py-1 mt-auto hover:bg-blue-600 transition-all">
                 Mua ngay
             </button>

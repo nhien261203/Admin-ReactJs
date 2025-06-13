@@ -4,14 +4,16 @@ import MainProduct from './MainProduct';
 import SuggestSection from './SuggestSection';
 import RecentlyViewedProducts from './RecentlyViewedProducts';
 import PromotionSection from './Promotion/PromotionSection';
-import PhoneSection from './PhoneSection/PhoneSection';
+import IphoneSection from './PhoneSection/IphoneSection';
+
+
 
 const MainContent = () => {
   return (
     <>
       <div>Main Content</div>
       <PromotionSection />
-      <PhoneSection />
+      <IphoneSection />
       <MainProduct />
       <SuggestSection />
       <RecentlyViewedProducts />

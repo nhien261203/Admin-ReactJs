@@ -1,28 +1,30 @@
-import React from "react";
-import IphoneProductCard from "./IphoneProductCard";
-import { useDragScroll } from "../../../hooks/useDragScroll";
+// components/IphoneShowcase.jsx
+import React, { useEffect, useState } from 'react';
+import IphoneCardList from './IphoneCardList';
+import mockIphoneProducts from './MockIphoneProducts';
+// import axios from 'axios'; // Nếu dùng API Laravel
 
-const IphoneSection = ({ products }) => {
-    const { containerRef, eventHandlers } = useDragScroll();
+const IphoneSection = () => {
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        // Với API Laravel:
+        // axios.get('/api/iphones').then(res => setProducts(res.data));
+        setProducts(mockIphoneProducts); // Dùng mock tạm thời
+    }, []);
 
     return (
-        <section className="bg-white rounded-xl p-6 shadow-sm">
-            <h2 className="text-2xl font-bold mb-4">Thế giới iPhone trong tầm tay</h2>
-            <div
-                ref={containerRef}
-                className="flex overflow-x-auto space-x-4 cursor-grab active:cursor-grabbing select-none scrollbar-hide"
-                {...eventHandlers}
-            >
-                {products.map((product, idx) => (
-                    <div
-                        key={idx}
-                        className="min-w-[180px] sm:min-w-[200px] md:min-w-[220px] lg:min-w-[250px]"
-                    >
-                        <IphoneProductCard {...product} />
-                    </div>
-                ))}
-            </div>
-        </section>
+        <div className="container">
+            <section className="bg-white my-8 p-4 rounded-lg shadow">
+                <div className="max-w-screen-xl mx-auto">
+                    <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                        Thế giới iPhone trong tầm tay
+                    </h2>
+                    <IphoneCardList products={products} />
+                </div>
+            </section>
+        </div>
+
     );
 };
 
