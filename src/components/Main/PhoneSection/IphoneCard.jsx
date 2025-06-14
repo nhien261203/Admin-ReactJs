@@ -12,7 +12,7 @@ const IphoneCard = ({
     rating = 0,
 }) => {
     return (
-        <div className="xl:w-[100%] group h-[350px] bg-white rounded-lg shadow-md border p-3 flex flex-col gap-2 hover:shadow-lg transition-shadow duration-300">
+        <div className="xl:w-[100%] group h-[350px] bg-white rounded-lg shadow-md border p-3 flex flex-col gap-2 group hover:shadow-lg transition-shadow duration-300">
             <img
                 src={image}
                 alt={name}

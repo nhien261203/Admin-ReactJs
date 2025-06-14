@@ -2,7 +2,7 @@
 const MockIphoneProducts = [
     {
         id: 1,
-        image: 'https://via.placeholder.com/200x200.png?text=iPhone+14',
+        image: 'https://shopdidong.vn/profiles/shopdidongvn/uploads/attach/1683672945_14prmshopdidong1.png',
         name: 'iPhone 14 Pro Max',
         specs: '128GB',
         price: '27.990.000',
