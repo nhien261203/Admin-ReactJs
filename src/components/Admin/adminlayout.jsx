@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from '../Admin/Header';
 import Sidebar from '../Admin/SideBar';
 import { Outlet } from 'react-router-dom';
+import Footer from '../Admin/footer';
 
 const AdminLayout = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -43,7 +44,10 @@ const AdminLayout = () => {
                 <div className="flex-1 overflow-auto p-4 pt-20">
                     <Outlet />
                 </div>
+
+                
             </div>
+            <Footer />
         </div>
     );
 };

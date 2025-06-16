@@ -43,6 +43,17 @@ const mockData = {
             },
         ],
     },
+
+    orderStatusPieData: {
+        labels: ['Đang xử lý', 'Đã giao', 'Đã hủy'],
+        datasets: [
+            {
+                data: [40, 45, 15],
+                backgroundColor: ['#f59e0b', '#10b981', '#ef4444']
+            }
+        ]
+    }
+
 };
 
 export default mockData;

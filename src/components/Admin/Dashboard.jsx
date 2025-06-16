@@ -5,10 +5,9 @@ import {
   FaUsers,
   FaChartLine,
   FaBoxOpen,
-  FaChartPie,
   FaStar
 } from 'react-icons/fa';
-import { Line, Bar, Doughnut } from 'react-chartjs-2';
+import { Line, Bar, Doughnut, Pie } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -60,22 +59,30 @@ const Dashboard = () => {
         <StatCard icon={<FaStar />} label="Đánh giá trung bình" value={mockData.averageRating} />
       </div>
 
-      {/* Biểu đồ doanh thu theo ngày */}
-      <div className="bg-white p-6 rounded shadow">
-        <h2 className="text-lg font-semibold mb-4">Doanh thu theo ngày</h2>
-        <Line data={mockData.revenueLineData} options={{ responsive: true }} />
+      {/* Biểu đồ doanh thu + đơn hàng cùng hàng */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="bg-white p-6 rounded shadow">
+          <h2 className="text-lg font-semibold mb-4">Doanh thu theo ngày</h2>
+          <Line data={mockData.revenueLineData} options={{ responsive: true }} />
+        </div>
+
+        <div className="bg-white p-6 rounded shadow">
+          <h2 className="text-lg font-semibold mb-4">Số lượng đơn hàng theo tuần</h2>
+          <Bar data={mockData.ordersBarData} options={{ responsive: true }} />
+        </div>
       </div>
 
-      {/* Biểu đồ đơn hàng theo tuần */}
-      <div className="bg-white p-6 rounded shadow">
-        <h2 className="text-lg font-semibold mb-4">Số lượng đơn hàng theo tuần</h2>
-        <Bar data={mockData.ordersBarData} options={{ responsive: true }} />
-      </div>
+      {/* Biểu đồ phân phối loại sản phẩm + tỷ lệ đơn hàng */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="bg-white p-6 rounded shadow">
+          <h2 className="text-lg font-semibold mb-4">Tỷ lệ sản phẩm bán theo loại</h2>
+          <Doughnut data={mockData.productTypeDoughnut} options={{ responsive: true }} />
+        </div>
 
-      {/* Biểu đồ phân phối loại sản phẩm */}
-      <div className="bg-white p-6 rounded shadow">
-        <h2 className="text-lg font-semibold mb-4">Tỷ lệ sản phẩm bán theo loại</h2>
-        <Doughnut data={mockData.productTypeDoughnut} options={{ responsive: true }} />
+        <div className="bg-white p-6 rounded shadow">
+          <h2 className="text-lg font-semibold mb-4">Tỷ lệ trạng thái đơn hàng</h2>
+          <Pie data={mockData.orderStatusPieData} options={{ responsive: true }} />
+        </div>
       </div>
     </div>
   );
