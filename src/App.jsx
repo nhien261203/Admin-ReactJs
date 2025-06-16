@@ -1,24 +1,25 @@
-
-import './App.css';
-import Navbar from './components/Navbar/Navbar';
-import Hero from './components/Hero/Hero';
-import Footer from './components/Footer/Footer'
-import ListCard from './components/ListCard/ListCard';
-import MainContent from './components/Main/MainContent';
+// App.jsx
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import WebsiteLayout from './components/websitelayout';
+import AdminLayout from './components/Admin/adminlayout';
+import Dashboard from './components/Admin/Dashboard';
+import ProductManager from './components/Admin/ProductManager';
 
 function App() {
-
   return (
-    <>
-      <div>
-        <Navbar />
-        <Hero />
-        <ListCard />
-        <MainContent />
-        <Footer />
-      </div>
-    </>
-  )
+    <Router>
+      <Routes>
+        {/* Website layout */}
+        <Route path="/" element={<WebsiteLayout />} />
+
+        {/* Admin layout */}
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="products" element={<ProductManager />} />
+        </Route>
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
