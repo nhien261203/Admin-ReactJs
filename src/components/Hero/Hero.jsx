@@ -4,10 +4,16 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
+
+// import slide1Desktop from '../../assets/hero/banner-xaomi.png';
+// import slide1Mobile from '../../assets/hero/slide-2-mob.png';
+
 import slide2Desktop from '../../assets/hero/slide-2.png';
 import slide2Mobile from '../../assets/hero/slide-2-mob.png';
+
 import slide3Desktop from '../../assets/hero/slide-3.png';
 import slide3Mobile from '../../assets/hero/slide-3-mob.png';
+
 
 // Custom Arrow Buttons
 const PrevArrow = ({ onClick }) => (
@@ -48,6 +54,11 @@ const Hero = () => {
             desktop: slide3Desktop,
             mobile: slide3Mobile,
         },
+
+        // {
+        //     desktop: slide1Desktop,
+        //     mobile: slide1Mobile,
+        // },
     ];
 
     const settings = {

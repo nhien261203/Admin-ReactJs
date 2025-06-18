@@ -7,6 +7,9 @@ export default {
   darkMode: "class",
   theme: {
     extend: {
+      animation: {
+        spin: 'spin 1s linear infinite',
+      },
       colors: {
         primary: '#f42c37',
         secondary: '#f42c37',
@@ -31,12 +34,15 @@ export default {
       fontFamily: {
         poppins: ['Poppins', 'sans-serif'],
         arial: ['Arial', 'sans-serif'],
+
+        sans: ['Inter', 'sans-serif'],
+
       },
     },
   },
   plugins: [
-    
-    
+
+
 
   ],
 }

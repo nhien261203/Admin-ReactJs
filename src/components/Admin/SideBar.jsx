@@ -12,7 +12,7 @@ import {
     FaUserShield,
     FaCog
 } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Sidebar = ({ collapsed, isMobile }) => {
     const isHidden = isMobile && collapsed;
@@ -20,20 +20,28 @@ const Sidebar = ({ collapsed, isMobile }) => {
 
     return (
         <div
-            className={`sidebar bg-[#070707] text-white h-screen fixed top-16 left-0 z-40 transform transition-all duration-700 ease-in-out
-                ${isHidden ? '-translate-x-full' : 'translate-x-0'}
-                ${sidebarWidth} md:translate-x-0 md:static overflow-y-auto scrollbar-hide`}
+            className={`
+    sidebar mt-[65px] bg-[#070707] text-white fixed left-0 z-40
+    transform transition-all duration-700 ease-in-out
+    ${isHidden ? '-translate-x-full' : 'translate-x-0'}
+    ${sidebarWidth} md:translate-x-0 md:static
+    flex flex-col
+    h-[calc(100vh-65px)]  // 👈 đảm bảo chiều cao vừa đủ, tránh tràn
+    overflow-y-auto`}
         >
-            {/* <div className={`p-4 flex items-center space-x-2 border-b border-gray-800 h-16 transition-all duration-700 ease-in-out ${collapsed ? 'justify-center' : ''}`}>
+
+
+
+            <div className={`p-4 flex items-center space-x-2 border-b border-gray-800 h-16 transition-all duration-700 ease-in-out ${collapsed ? 'justify-center' : ''}`}>
                 <FaStore className="text-primary text-2xl transition-transform duration-700 ease-in-out" />
                 <span
                     className={`logo-text text-xl font-bold transition-opacity duration-700 ease-in-out ${collapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100 ml-2 w-auto'}`}
                 >
                     Nexus<span className="text-primary">Admin</span>
                 </span>
-            </div> */}
+            </div>
 
-            <div className="p-4 pt-5 md:pt-20">
+            <div className="p-4 ">
                 <FadeInWhenVisible show={!collapsed}>
                     <div className="text-gray-400 uppercase text-xs font-bold mb-4">BẢNG ĐIỀU KHIỂN</div>
                 </FadeInWhenVisible>
@@ -49,7 +57,7 @@ const Sidebar = ({ collapsed, isMobile }) => {
                     <SidebarLink to="/admin/categories" icon={<FaBoxes />} label="Danh mục" collapsed={collapsed} />
                     <SidebarLink to="/admin/brands" icon={<FaTags />} label="Thương hiệu" collapsed={collapsed} />
                     <SidebarLink to="/admin/product-images" icon={<FaImage />} label="Hình ảnh" collapsed={collapsed} />
-                    <SidebarLink to="/admin/sliders" icon={<FaImage />} label="Slider" collapsed={collapsed} />
+                    <SidebarLink to="/admin/slides" icon={<FaImage />} label="Slider" collapsed={collapsed} />
                     <SidebarLink to="/admin/suppliers" icon={<FaTruckLoading />} label="Nhà cung cấp" collapsed={collapsed} />
 
                     <FadeInWhenVisible show={!collapsed}>
@@ -71,25 +79,39 @@ const Sidebar = ({ collapsed, isMobile }) => {
                     </FadeInWhenVisible>
 
                     <SidebarLink to="/admin/settings" icon={<FaCog />} label="Cài đặt" collapsed={collapsed} />
+
+                    <FadeInWhenVisible show={!collapsed}>
+                        <SectionTitle title="LOG-ACTION " />
+                    </FadeInWhenVisible>
+                    <SidebarLink to="/admin/logs" icon={<FaClipboardList />} label="Lịch sử hoạt động" collapsed={collapsed} />
+
                 </nav>
             </div>
         </div>
     );
 };
 
-const SidebarLink = ({ to, icon, label, collapsed }) => (
-    <Link
-        to={to}
-        className="flex items-center space-x-3 py-3 px-4 text-gray-300 hover:bg-gray-800 rounded-lg transition-all duration-700 ease-in-out"
-    >
-        <div className="w-5 text-center">{icon}</div>
-        <span
-            className={`transition-all duration-700 ease-in-out origin-left ${collapsed ? 'opacity-0 scale-95 w-0 overflow-hidden' : 'opacity-100 scale-100 ml-2'}`}
+const SidebarLink = ({ to, icon, label, collapsed }) => {
+    const location = useLocation();
+    const isActive = location.pathname === to;
+
+    return (
+        <Link
+            to={to}
+            className={`flex items-center space-x-3 py-3 px-4 rounded-lg transition-all duration-700 ease-in-out ${isActive
+                ? 'bg-gray-800 text-white'
+                : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                }`}
         >
-            {label}
-        </span>
-    </Link>
-);
+            <div className="w-5 text-center">{icon}</div>
+            <span
+                className={`transition-all duration-700 ease-in-out origin-left ${collapsed ? 'opacity-0 scale-95 w-0 overflow-hidden' : 'opacity-100 scale-100 ml-2'}`}
+            >
+                {label}
+            </span>
+        </Link>
+    );
+};
 
 const SectionTitle = ({ title }) => (
     <div className="text-gray-400 uppercase text-xs font-bold mt-6 mb-4 transition-opacity duration-700 ease-in-out">

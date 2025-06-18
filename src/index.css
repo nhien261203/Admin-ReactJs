@@ -26,18 +26,10 @@
     }
 
     /* Add submenu transition styles */
-    .submenu {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-in-out;
+    
+    .input { 
+        @apply w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500; 
     }
-
-    .submenu.active {
-    max-height: 500px; /* Adjust based on your content */
-    }
-
-    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
-
 
 }
 

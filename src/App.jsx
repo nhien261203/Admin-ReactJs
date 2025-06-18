@@ -1,23 +1,15 @@
-// App.jsx
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import WebsiteLayout from './components/websitelayout';
-import AdminLayout from './components/Admin/adminlayout';
-import Dashboard from './components/Admin/Dashboard';
-import ProductManager from './components/Admin/ProductManager';
+// src/App.jsx
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import WebsiteRoutes from './routes/WebsiteRoutes';
+import AdminRoutes from './routes/AdminRoutes';
 
 function App() {
   return (
     <Router>
-      <Routes>
-        {/* Website layout */}
-        <Route path="/" element={<WebsiteLayout />} />
-
-        {/* Admin layout */}
-        <Route path="/admin" element={<AdminLayout />}>
-          <Route index element={<Dashboard />} />
-          <Route path="products" element={<ProductManager />} />
-        </Route>
-      </Routes>
+      {/* Gọi hai nhóm route riêng biệt như component */}
+      <WebsiteRoutes />
+      <AdminRoutes />
     </Router>
   );
 }

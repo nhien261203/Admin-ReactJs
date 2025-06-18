@@ -24,31 +24,37 @@ const AdminLayout = () => {
     };
 
     return (
-        <div className="h-screen flex flex-col bg-gray-100 overflow-hidden">
+        <>
             {/* Header cố định */}
-            <Header onToggleSidebar={handleToggleSidebar} />
+            
+            <div className="h-screen flex flex-col bg-gray-100 overflow-hidden ">
+                <Header onToggleSidebar={handleToggleSidebar} />
 
-            {/* Phần còn lại cuộn cùng nhau */}
-            <div className="flex flex-1 overflow-hidden">
-                <Sidebar collapsed={collapsed} isMobile={isMobile} />
+                {/* Phần còn lại cuộn cùng nhau */}
+                <div className="flex flex-1 overflow-hidden ">
+                    <Sidebar collapsed={collapsed} isMobile={isMobile} />
 
-                {/* Overlay mobile */}
-                {isMobile && !collapsed && (
-                    <div
-                        className="fixed inset-0 bg-black bg-opacity-40 z-30 md:hidden"
-                        onClick={() => setCollapsed(true)}
-                    />
-                )}
+                    {/* Overlay mobile */}
+                    {isMobile && !collapsed && (
+                        <div
+                            className="fixed inset-0 bg-black bg-opacity-40 z-30 md:hidden"
+                            onClick={() => setCollapsed(true)}
+                        />
+                    )}
 
-                {/* Main content cuộn cùng sidebar */}
-                <div className="flex-1 overflow-auto p-4 pt-20">
-                    <Outlet />
+                    {/* Main content cuộn cùng sidebar */}
+                    <div className="flex-1 overflow-auto p-4 pt-20 scrollbar-hide">
+                        <Outlet />
+                    </div>
+
+
                 </div>
-
-                
+            
             </div>
-            <Footer />
-        </div>
+            {/* <Footer /> */}
+        </>
+
+
     );
 };
 

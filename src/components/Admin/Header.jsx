@@ -23,7 +23,7 @@ const Header = ({ onToggleSidebar }) => {
 
     return (
         <>
-            <header className="fixed top-0 left-0 w-full h-16 bg-white text-slate-700 z-50 shadow px-4 flex items-center justify-between">
+            <header className="fixed top-0 left-0 w-full h-16 bg-gray-200 text-slate-700 z-50 shadow px-4 flex items-center justify-between">
                 {/* Nút toggle sidebar */}
                 <button onClick={onToggleSidebar} className="hover:text-blue-500 transition">
                     <FiMenu size={22} />
