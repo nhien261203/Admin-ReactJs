@@ -5,7 +5,7 @@ import ListCard from './ListCard/ListCard'
 import MainContent from './Main/MainContent'
 import Footer from './Footer/Footer'
 
-const websitelayout = () => {
+const WebsiteLayout = () => {
     return (
         <>
             <Navbar />
@@ -17,4 +17,4 @@ const websitelayout = () => {
     )
 }
 
-export default websitelayout
+export default WebsiteLayout

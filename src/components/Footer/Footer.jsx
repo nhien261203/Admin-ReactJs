@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = () => {
     return (
-        <footer className=" text-white pt-10 pb-6">
+        <footer className="bg-[#515154] text-white pt-10 pb-6">
             <div className=" max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Logo và mô tả */}
                 <div className="flex flex-col md:flex-row md:justify-between gap-8">

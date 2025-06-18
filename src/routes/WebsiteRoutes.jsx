@@ -2,16 +2,16 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import WebsiteLayout from '../components/WebsiteLayout';
-
-// 👉 Bạn có thể thêm các trang khác tại đây
+import LoginPage from '../components/LoginPage';
 
 const WebsiteRoutes = () => {
     return (
         <Routes>
-            <Route path="/" element={<WebsiteLayout />}>
-                
-                {/* Thêm các route khác ở đây */}
-            </Route>
+            {/* 👉 Login là route riêng không dùng WebsiteLayout */}
+            <Route path="/login" element={<LoginPage />} />
+
+            {/* 👉 Tất cả các route còn lại dùng layout chính */}
+            <Route path="/*" element={<WebsiteLayout />} />
         </Routes>
     );
 };
