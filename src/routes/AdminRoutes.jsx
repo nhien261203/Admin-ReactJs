@@ -7,6 +7,8 @@ import ProductManager from '../components/Admin/ProductManager';
 import SlideManager from '../components/Admin/SlideManager';
 import CategoryManager from '../components/Admin/CategoryManager';
 import ProductList from '../components/Admin/ProductList';
+import OrderDetail from '../components/Admin/OrderDetail';
+import OrderList from '../components/Admin/OrderList';
 
 const AdminRoutes = () => {
   return (
@@ -18,6 +20,8 @@ const AdminRoutes = () => {
         <Route path="productList" element={<ProductList />} />
         <Route path="slides" element={<SlideManager />} />
         <Route path="categories" element={<CategoryManager />} />
+        <Route path="orders" element={<OrderList />} />
+        <Route path="orders/:id" element={<OrderDetail />} />
       </Route>
     </Routes>
   );

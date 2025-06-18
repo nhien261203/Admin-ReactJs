@@ -27,7 +27,7 @@ const Sidebar = ({ collapsed, isMobile }) => {
     ${sidebarWidth} md:translate-x-0 md:static
     flex flex-col
     h-[calc(100vh-65px)]  // 👈 đảm bảo chiều cao vừa đủ, tránh tràn
-    overflow-y-auto`}
+    overflow-y-auto scrollbar-hide`}
         >
 
 
