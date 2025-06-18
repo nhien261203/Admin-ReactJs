@@ -3,17 +3,18 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import WebsiteLayout from '../components/WebsiteLayout';
 import LoginPage from '../components/LoginPage';
+import RegisterPage from '../RegisterPage';
 
-const WebsiteRoutes = () => {
-    return (
-        <Routes>
-            {/* 👉 Login là route riêng không dùng WebsiteLayout */}
-            <Route path="/login" element={<LoginPage />} />
+const WebsiteRoutes = () => (
+    <Routes>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
 
-            {/* 👉 Tất cả các route còn lại dùng layout chính */}
-            <Route path="/*" element={<WebsiteLayout />} />
-        </Routes>
-    );
-};
+        {/* Chỉ áp dụng WebsiteLayout cho các path bắt đầu từ '/' ngoại trừ '/admin' */}
+        <Route path="/" element={<WebsiteLayout />}>
+            {/* Các route con như Home, About,... đặt ở đây nếu có */}
+        </Route>
+    </Routes>
+);
 
 export default WebsiteRoutes;

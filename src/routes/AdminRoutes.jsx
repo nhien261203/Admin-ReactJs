@@ -10,21 +10,18 @@ import ProductList from '../components/Admin/ProductList';
 import OrderDetail from '../components/Admin/OrderDetail';
 import OrderList from '../components/Admin/OrderList';
 
-const AdminRoutes = () => {
-  return (
-    <Routes>
-      <Route path="/admin" element={<AdminLayout />}>
-        <Route index element={<Dashboard />} />
-        <Route path="products" element={<ProductManager />} />
-
-        <Route path="productList" element={<ProductList />} />
-        <Route path="slides" element={<SlideManager />} />
-        <Route path="categories" element={<CategoryManager />} />
-        <Route path="orders" element={<OrderList />} />
-        <Route path="orders/:id" element={<OrderDetail />} />
-      </Route>
-    </Routes>
-  );
-};
+const AdminRoutes = () => (
+  <Routes>
+    <Route path="/admin" element={<AdminLayout />}>
+      <Route index element={<Dashboard />} />
+      <Route path="products" element={<ProductManager />} />
+      <Route path="productList" element={<ProductList />} />
+      <Route path="slides" element={<SlideManager />} />
+      <Route path="categories" element={<CategoryManager />} />
+      <Route path="orders" element={<OrderList />} />
+      <Route path="orders/:id" element={<OrderDetail />} />
+    </Route>
+  </Routes>
+);
 
 export default AdminRoutes;
