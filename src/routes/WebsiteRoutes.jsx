@@ -6,15 +6,13 @@ import LoginPage from '../components/LoginPage';
 import RegisterPage from '../RegisterPage';
 
 const WebsiteRoutes = () => (
-    <Routes>
+
+    <>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/*" element={<WebsiteLayout />} />
+    </>
 
-        {/* Chỉ áp dụng WebsiteLayout cho các path bắt đầu từ '/' ngoại trừ '/admin' */}
-        <Route path="/" element={<WebsiteLayout />}>
-            {/* Các route con như Home, About,... đặt ở đây nếu có */}
-        </Route>
-    </Routes>
 );
 
 export default WebsiteRoutes;

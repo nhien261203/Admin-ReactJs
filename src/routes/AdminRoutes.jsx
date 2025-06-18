@@ -11,7 +11,7 @@ import OrderDetail from '../components/Admin/OrderDetail';
 import OrderList from '../components/Admin/OrderList';
 
 const AdminRoutes = () => (
-  <Routes>
+  <>
     <Route path="/admin" element={<AdminLayout />}>
       <Route index element={<Dashboard />} />
       <Route path="products" element={<ProductManager />} />
@@ -21,7 +21,9 @@ const AdminRoutes = () => (
       <Route path="orders" element={<OrderList />} />
       <Route path="orders/:id" element={<OrderDetail />} />
     </Route>
-  </Routes>
+  </>
+
+
 );
 
 export default AdminRoutes;
