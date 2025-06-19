@@ -9,6 +9,10 @@ import CategoryManager from '../components/Admin/CategoryManager';
 import ProductList from '../components/Admin/ProductList';
 import OrderDetail from '../components/Admin/OrderDetail';
 import OrderList from '../components/Admin/OrderList';
+import AddUser from '../components/Admin/AddUser';
+import UserList from '../components/Admin/UserList';
+import UserDetail from '../components/Admin/UserDetail';
+import AddBrand from '../components/Admin/AddBrand';
 
 const AdminRoutes = () => (
   <>
@@ -20,6 +24,14 @@ const AdminRoutes = () => (
       <Route path="categories" element={<CategoryManager />} />
       <Route path="orders" element={<OrderList />} />
       <Route path="orders/:id" element={<OrderDetail />} />
+
+
+      <Route path="admins" element={<AddUser />} />
+      <Route path="users" element={<UserList />} />
+      <Route path="users/:id" element={<UserDetail />} />
+
+      <Route path="brands" element={<AddBrand />} />
+
     </Route>
   </>
 

@@ -10,7 +10,7 @@ const WebsiteRoutes = () => (
     <>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/*" element={<WebsiteLayout />} />
+        <Route path="/" element={<WebsiteLayout />} />
     </>
 
 );
