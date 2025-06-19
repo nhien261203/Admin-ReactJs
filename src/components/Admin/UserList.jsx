@@ -113,18 +113,18 @@ const UserList = () => {
                             <span className="text-blue-700">{user.name}</span>
                         </div>
                         <div className="text-sm text-gray-500">{user.email}</div>
-                        <div className="text-sm text-gray-500">📞 {user.phone}</div>
-                        <div className="text-sm text-gray-500">🔑 {user.role}</div>
+                        <div className="text-sm text-gray-500"> {user.phone}</div>
+                        <div className="text-sm text-gray-500"> {user.role}</div>
                         <div className="text-sm mt-1">
                             <td className="p-3">
                                 <span className={`inline-flex items-center gap-1 px-2 py-1 text-xs rounded-full font-semibold 
                                     ${user.status === 'Hoạt động' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-600'}`}>
-                                    {user.status === 'Hoạt động' ? '🟢' : '🔴'} {user.status}
+                                    {user.status === 'Hoạt động'} {user.status}
                                 </span>
                             </td>
 
                         </div>
-                        <div className="text-sm text-gray-500">📅 {user.created_at}</div>
+                        <div className="text-sm text-gray-500"> {user.created_at}</div>
                         <div className="mt-2">
                             <Link
                                 to={`/admin/users/${user.id}`}
